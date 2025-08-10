@@ -1,0 +1,59 @@
+{
+  "info": {
+    "name": "PowerOfAum Module E (Express, Modular)",
+    "_postman_id": "f7c0aa8d-1234-5678-90ab-exampleid",
+    "description": "Tests GET and POST endpoints for Module E (Subscription Status Management)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET subscription-status (success)",
+      "request": {
+        "method": "GET",
+        "url": "<YOUR-VERCEL-URL>/api/subscription-status?userId=USER_001"
+      }
+    },
+    {
+      "name": "GET subscription-status (missing userId error)",
+      "request": {
+        "method": "GET",
+        "url": "<YOUR-VERCEL-URL>/api/subscription-status"
+      }
+    },
+    {
+      "name": "POST update-subscription (success)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"USER_001\",\n  \"newPlan\": \"monthly_spiritual\",\n  \"effectiveDate\": \"2025-07-01T00:00:00Z\"\n}"
+        },
+        "url": "<YOUR-VERCEL-URL>/api/update-subscription"
+      }
+    },
+    {
+      "name": "POST update-subscription (validation error)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"\",\n  \"newPlan\": \"\",\n  \"effectiveDate\": \"not-a-date\"\n}"
+        },
+        "url": "<YOUR-VERCEL-URL>/api/update-subscription"
+      }
+    }
+  ],
+  "variable": []
+}
